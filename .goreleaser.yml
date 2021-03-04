@@ -1,0 +1,24 @@
+builds:
+- binary: alertmanager-webhook-receiver
+  env:
+  - CGO_ENABLED=0
+  goos:
+  - linux
+  goarch:
+  - amd64
+  - arm64
+
+dockers:
+-
+  goarch: amd64
+  ids:
+  - alertmanager-webhook-receiver
+  image_templates:
+  - "quay.io/luciferinlove/alertmanager-webhook-receiver:latest"
+  - "quay.io/luciferinlove/alertmanager-webhook-receiver:{{ .Tag }}"
+
+archives:
+- name_template: "{{ .ProjectName }}_{{ .Tag }}_{{ .Os }}_{{ .Arch }}"
+  format: tar.gz
+  files:
+  - none*
